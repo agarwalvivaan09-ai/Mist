@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIST — Your fragrance. Pocket-sized.</title>
     <meta name="description" content="MIST is a refillable perfume atomizer with a glossy metal shell, side fill window and bottom-valve refill. Carry the scent you love, anywhere.">
     <meta name="theme-color" content="#f5f5f7">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MIST">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:title" content="MIST — Your fragrance. Pocket-sized.">
+    <meta property="og:description" content="MIST is a refillable perfume atomizer with a glossy metal shell, side fill window and bottom-valve refill. Carry the scent you love, anywhere.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="MIST — Your fragrance. Pocket-sized.">
+    <meta name="twitter:description" content="MIST is a refillable perfume atomizer with a glossy metal shell, side fill window and bottom-valve refill. Carry the scent you love, anywhere.">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='11' y='2' width='10' height='28' rx='5' fill='%23111'/%3E%3Crect x='11' y='11' width='10' height='1.5' fill='%23ccc'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="style.css">
     <script type="importmap">
@@ -15,6 +24,50 @@
                 "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
             }
         }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "MIST",
+          "email": "mist2k26@gmail.com",
+          "sameAs": [
+            "https://instagram.com/mist.atom"
+          ],
+          "founder": [
+            {
+              "@type": "Person",
+              "name": "Vivaan Agarwal"
+            },
+            {
+              "@type": "Person",
+              "name": "Pura Ruia"
+            },
+            {
+              "@type": "Person",
+              "name": "Bhavya Bansal"
+            }
+          ]
+        },
+        {
+          "@type": "Product",
+          "name": "MIST Refillable Perfume Atomizer",
+          "brand": {
+            "@type": "Brand",
+            "name": "MIST"
+          },
+          "description": "A slim refillable perfume atomizer with a glossy metal shell, side fill window and bottom-valve refill. Approximately 30-35 sprays per fill.",
+          "color": "Black, Silver",
+          "offers": {
+            "@type": "Offer",
+            "price": "99",
+            "priceCurrency": "INR"
+          }
+        }
+      ]
+    }
     </script>
 </head>
 <body class="home">
@@ -368,7 +421,12 @@
         </div>
     </div>
 </footer>
-
+<div class="buybar" data-buybar="default" aria-hidden="true">
+    <div class="buybar-inner">
+        <div class="buybar-info"><strong>MIST</strong><span>₹99 · Black or Silver</span></div>
+        <a href="pages/shop.html" class="btn btn-primary btn-compact" tabindex="-1">Buy</a>
+    </div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
