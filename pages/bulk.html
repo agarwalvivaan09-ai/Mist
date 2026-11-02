@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bulk Orders — MIST</title>
     <meta name="description" content="Order MIST refillable atomizers in bulk for events, hampers, welcome kits and resale. Minimum 40 units.">
     <meta name="theme-color" content="#f5f5f7">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MIST">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:title" content="Bulk Orders — MIST">
+    <meta property="og:description" content="Order MIST refillable atomizers in bulk for events, hampers, welcome kits and resale. Minimum 40 units.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Bulk Orders — MIST">
+    <meta name="twitter:description" content="Order MIST refillable atomizers in bulk for events, hampers, welcome kits and resale. Minimum 40 units.">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='11' y='2' width='10' height='28' rx='5' fill='%23111'/%3E%3Crect x='11' y='11' width='10' height='1.5' fill='%23ccc'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -37,32 +46,93 @@
             <p class="page-intro">MIST is suitable for event giveaways, hampers, welcome kits, resale bundles, and custom gifting plans.</p>
         </div>
     </section>
-    <section class="section">
-        <div class="container two-col">
-            <div class="reveal">
+    <section class="section bulk-section">
+        <div class="container bulk-grid">
+            <div class="bulk-info reveal">
                 <p class="spec-big">40 units</p>
                 <p class="muted">Minimum bulk order.</p>
-                <p class="body-copy">For larger quantities, message us with the number of units, delivery city, and required timeline.</p>
-                <div class="cta-inline left">
-                    <a href="mailto:mist2k26@gmail.com?subject=MIST%20bulk%20order" class="btn btn-primary">Email for bulk pricing</a>
-                    <a href="contact.html" class="link-more">Other ways to reach us</a>
+                <div class="card">
+                    <h2>Bulk checklist</h2>
+                    <ul class="check-list">
+                        <li>Minimum 40 units</li>
+                        <li>Confirm delivery location</li>
+                        <li>Share required date before ordering</li>
+                        <li>Ask about availability before payment</li>
+                    </ul>
                 </div>
+                <div class="uses uses-left"><span>Event giveaways</span><span>Hampers</span><span>Welcome kits</span><span>Resale bundles</span><span>Custom gifting</span></div>
             </div>
-            <div class="card reveal">
-                <h2>Bulk checklist</h2>
-                <ul class="check-list">
-                    <li>Minimum 40 units</li>
-                    <li>Confirm delivery location</li>
-                    <li>Share required date before ordering</li>
-                    <li>Ask about availability before payment</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <section class="section section-gray">
-        <div class="container">
-            <div class="section-header centered reveal"><h2>Popular uses.</h2></div>
-            <div class="uses reveal"><span>Event giveaways</span><span>Hampers</span><span>Welcome kits</span><span>Resale bundles</span><span>Custom gifting</span></div>
+
+            <form class="order-form bulk-form reveal" id="bulkForm" data-order-form="bulk" novalidate>
+                <h2>Get a bulk quote.</h2>
+                <fieldset>
+                    <legend>Quantity. <span>Minimum 40.</span></legend>
+                    <div class="qty">
+                        <button type="button" data-qty="-10" aria-label="Decrease by 10">−</button>
+                        <input type="number" name="qty" value="40" min="40" max="100000" step="1" inputmode="numeric" aria-label="Quantity">
+                        <button type="button" data-qty="10" aria-label="Increase by 10">+</button>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Finish.</legend>
+                    <div class="option-grid three">
+                        <label class="option"><input type="radio" name="finish" value="Black" checked><span class="option-swatch swatch-black"></span><span>Black</span></label>
+                        <label class="option"><input type="radio" name="finish" value="Silver"><span class="option-swatch swatch-silver"></span><span>Silver</span></label>
+                        <label class="option"><input type="radio" name="finish" value="Mix of black and silver"><span class="option-swatch swatch-mix"></span><span>Mix</span></label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Details.</legend>
+                    <div class="fields">
+                        <div class="field">
+                            <input type="text" id="b-name" name="name" autocomplete="name" placeholder=" " required>
+                            <label for="b-name">Full name</label>
+                            <p class="field-error">Enter your name.</p>
+                        </div>
+                        <div class="field">
+                            <input type="text" id="b-org" name="org" autocomplete="organization" placeholder=" ">
+                            <label for="b-org">Organisation or event (optional)</label>
+                        </div>
+                        <div class="field">
+                            <input type="tel" id="b-phone" name="phone" autocomplete="tel" inputmode="tel" placeholder=" " required data-validate="phone">
+                            <label for="b-phone">Mobile number</label>
+                            <p class="field-error">Enter a 10-digit Indian mobile number.</p>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <input type="text" id="b-city" name="city" autocomplete="address-level2" placeholder=" " required>
+                                <label for="b-city">Delivery city</label>
+                                <p class="field-error">Enter your delivery city.</p>
+                            </div>
+                            <div class="field">
+                                <input type="date" id="b-date" name="date" required data-validate="future-date">
+                                <label for="b-date" class="label-fixed">Needed by</label>
+                                <p class="field-error">Choose a date from today onwards.</p>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <textarea id="b-notes" name="notes" rows="2" placeholder=" "></textarea>
+                            <label for="b-notes">Notes (optional)</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="order-summary">
+                    <div><span>Estimate</span><small>At ₹99 retail price. Bulk pricing confirmed on reply.</small></div>
+                    <strong data-order-total>₹3,960</strong>
+                </div>
+                <div class="order-actions">
+                    <button type="submit" class="btn btn-whatsapp btn-block" data-channel="whatsapp" data-needs-whatsapp>Send on WhatsApp</button>
+                    <button type="submit" class="btn btn-primary btn-block" data-channel="email">Send by email</button>
+                </div>
+                <div class="order-sent" role="status" aria-live="polite" hidden>
+                    <h3>Almost done.</h3>
+                    <p>Your enquiry is ready in <span data-sent-channel>your email app</span>. Press send and we'll reply with pricing and availability.</p>
+                    <p class="order-sent-actions">
+                        <button type="button" class="link-button" data-copy-message>Copy enquiry</button>
+                        <span data-copy-status></span>
+                    </p>
+                </div>
+            </form>
         </div>
     </section>
 </main>

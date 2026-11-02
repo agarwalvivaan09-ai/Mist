@@ -1,5 +1,200 @@
+/* ==========================================================================
+   Store settings — edit these
+   whatsapp: your WhatsApp number with country code, digits only
+             (e.g. "919876543210"). Leave empty to hide WhatsApp ordering.
+   ========================================================================== */
+const MIST_CONFIG = {
+    whatsapp: "",
+    email: "mist2k26@gmail.com",
+    price: 99,
+    bulkMin: 40
+};
+
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 document.documentElement.classList.add("js");
+
+const formatINR = (n) => "₹" + Math.round(n).toLocaleString("en-IN");
+
+/* ---------- Order & bulk forms ---------- */
+if (!MIST_CONFIG.whatsapp) {
+    document.querySelectorAll("[data-needs-whatsapp]").forEach((el) => el.remove());
+}
+
+const normalisePhone = (value) => {
+    let digits = value.replace(/\D/g, "");
+    if (digits.length === 12 && digits.startsWith("91")) digits = digits.slice(2);
+    if (digits.length === 11 && digits.startsWith("0")) digits = digits.slice(1);
+    return digits;
+};
+
+const validators = {
+    phone: (v) => /^[6-9]\d{9}$/.test(normalisePhone(v)),
+    "future-date": (v) => {
+        if (!v) return false;
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return new Date(v + "T00:00:00") >= today;
+    }
+};
+
+document.querySelectorAll("[data-order-form]").forEach((form) => {
+    const isBulk = form.dataset.orderForm === "bulk";
+    const min = isBulk ? MIST_CONFIG.bulkMin : 1;
+    const qty = form.elements.qty;
+    const totals = document.querySelectorAll("[data-order-total]");
+    const descs = document.querySelectorAll("[data-order-desc]");
+    const bulkHint = form.querySelector("[data-bulk-hint]");
+    const stage = document.getElementById("buyStage");
+    const sent = form.querySelector(".order-sent");
+    let lastMessage = "";
+
+    const dateInput = form.elements.date;
+    if (dateInput) {
+        const d = new Date();
+        dateInput.min = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    }
+
+    const quantity = () => Math.max(min, Math.min(Number(qty.max) || 999, parseInt(qty.value, 10) || min));
+    const finish = () => form.elements.finish.value;
+
+    const update = () => {
+        const q = quantity();
+        totals.forEach((el) => { el.textContent = formatINR(q * MIST_CONFIG.price); });
+        descs.forEach((el) => { el.textContent = `${q} × ${finish()}`; });
+        if (bulkHint) bulkHint.hidden = q < MIST_CONFIG.bulkMin;
+        if (stage) stage.dataset.finish = finish().toLowerCase().includes("silver") ? "silver" : "black";
+    };
+
+    form.querySelectorAll("[data-qty]").forEach((button) => {
+        button.addEventListener("click", () => {
+            qty.value = Math.max(min, (parseInt(qty.value, 10) || min) + Number(button.dataset.qty));
+            update();
+        });
+    });
+    qty.addEventListener("input", update);
+    qty.addEventListener("change", () => { qty.value = quantity(); update(); });
+    form.querySelectorAll("input[name=finish]").forEach((radio) => radio.addEventListener("change", update));
+    update();
+
+    // Validation: show errors after the first blur or submit, clear as soon as fixed
+    const checkField = (input) => {
+        const field = input.closest(".field");
+        if (!field) return true;
+        const value = input.value.trim();
+        let ok = !input.required || value.length > 0;
+        if (ok && value && input.dataset.validate) ok = validators[input.dataset.validate](value);
+        field.classList.toggle("invalid", !ok);
+        input.setAttribute("aria-invalid", String(!ok));
+        const error = field.querySelector(".field-error");
+        if (error) {
+            if (!error.id) error.id = `${input.id}-err`;
+            input.setAttribute("aria-describedby", error.id);
+        }
+        return ok;
+    };
+    form.querySelectorAll(".field input, .field textarea").forEach((input) => {
+        input.addEventListener("blur", () => { if (input.value || input.dataset.touched) checkField(input); input.dataset.touched = "1"; });
+        input.addEventListener("input", () => { if (input.closest(".field").classList.contains("invalid")) checkField(input); });
+    });
+
+    const buildMessage = () => {
+        const f = form.elements;
+        const q = quantity();
+        const lines = isBulk
+            ? [
+                "Hi MIST team, I'd like a bulk quote.",
+                "",
+                `Quantity: ${q}`,
+                `Finish: ${finish()}`,
+                `Estimate at retail: ${formatINR(q * MIST_CONFIG.price)}`,
+                `Needed by: ${new Date(f.date.value + "T00:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}`,
+                "",
+                `Name: ${f.name.value.trim()}`,
+                f.org.value.trim() ? `Organisation: ${f.org.value.trim()}` : null,
+                `Phone: +91 ${normalisePhone(f.phone.value)}`,
+                `City: ${f.city.value.trim()}`
+            ]
+            : [
+                "Hi MIST team, I'd like to order:",
+                "",
+                `${q} × MIST atomizer (${finish()})`,
+                `Total: ${formatINR(q * MIST_CONFIG.price)}`,
+                "",
+                `Name: ${f.name.value.trim()}`,
+                `Phone: +91 ${normalisePhone(f.phone.value)}`,
+                `City: ${f.city.value.trim()}`
+            ];
+        if (f.notes.value.trim()) lines.push(`Notes: ${f.notes.value.trim()}`);
+        return lines.filter((line) => line !== null).join("\n");
+    };
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        qty.value = quantity();
+        update();
+        const inputs = [...form.querySelectorAll(".field input, .field textarea")];
+        const results = inputs.map(checkField);
+        const firstBad = inputs[results.indexOf(false)];
+        if (firstBad) {
+            firstBad.focus();
+            firstBad.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "center" });
+            return;
+        }
+
+        const channel = event.submitter?.dataset.channel || (MIST_CONFIG.whatsapp ? "whatsapp" : "email");
+        lastMessage = buildMessage();
+        const subject = isBulk ? `MIST bulk quote: ${quantity()} units` : `MIST order: ${quantity()} × ${finish()}`;
+        const url = channel === "whatsapp"
+            ? `https://wa.me/${MIST_CONFIG.whatsapp}?text=${encodeURIComponent(lastMessage)}`
+            : `mailto:${MIST_CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lastMessage)}`;
+
+        if (sent) {
+            sent.hidden = false;
+            sent.querySelector("[data-sent-channel]").textContent = channel === "whatsapp" ? "WhatsApp" : "your email app";
+        }
+        if (channel === "whatsapp") window.open(url, "_blank", "noopener");
+        else window.location.href = url;
+    });
+
+    form.querySelector("[data-copy-message]")?.addEventListener("click", async () => {
+        const status = form.querySelector("[data-copy-status]");
+        try {
+            await navigator.clipboard.writeText(lastMessage);
+            status.textContent = "Copied. Paste it into a message to us.";
+        } catch {
+            status.textContent = `Email us at ${MIST_CONFIG.email}.`;
+        }
+    });
+});
+
+/* ---------- Phone purchase bar ---------- */
+const buybar = document.querySelector(".buybar");
+if (buybar) {
+    const isShop = buybar.dataset.buybar === "shop";
+    let pastTop = false;
+    let targetVisible = false;
+    const refresh = () => {
+        const show = pastTop && !targetVisible;
+        buybar.classList.toggle("is-visible", show);
+        buybar.setAttribute("aria-hidden", String(!show));
+        buybar.querySelectorAll("a").forEach((a) => (a.tabIndex = show ? 0 : -1));
+        document.body.classList.toggle("buybar-on", show);
+    };
+    window.addEventListener("scroll", () => {
+        const next = window.scrollY > (isShop ? 380 : 520);
+        if (next !== pastTop) { pastTop = next; refresh(); }
+    }, { passive: true });
+    if ("IntersectionObserver" in window) {
+        const seen = new Set();
+        const targets = document.querySelectorAll(isShop ? "#orderActions, .footer" : ".hero-buttons, .cta-section, .footer");
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)));
+            targetVisible = seen.size > 0;
+            refresh();
+        });
+        targets.forEach((t) => io.observe(t));
+    }
+}
 
 /* ---------- Active nav link ---------- */
 const currentPage = window.location.pathname.split("/").pop() || "index.html";

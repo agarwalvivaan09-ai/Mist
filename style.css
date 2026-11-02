@@ -1257,6 +1257,7 @@ h3 {
     width: 64px;
     height: 48px;
     border: 0;
+    background: transparent;
     text-align: center;
     font-size: 17px;
     -moz-appearance: textfield;
@@ -1504,6 +1505,342 @@ h3 {
 .legal-links a:first-child {
     padding-left: 0;
     border-left: 0;
+}
+
+/* ---------- Forms ---------- */
+
+.fields {
+    display: grid;
+    gap: 14px;
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.field {
+    position: relative;
+}
+
+.field input,
+.field textarea {
+    display: block;
+    width: 100%;
+    min-height: 56px;
+    padding: 24px 16px 8px;
+    border: 1px solid var(--soft-muted);
+    border-radius: 12px;
+    background: var(--paper);
+    font-size: 17px;
+    letter-spacing: -0.02em;
+    resize: vertical;
+    transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+
+.field textarea {
+    min-height: 80px;
+    line-height: 1.4;
+}
+
+.field input:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.25);
+}
+
+.field label {
+    position: absolute;
+    left: 17px;
+    top: 17px;
+    color: var(--soft-muted);
+    font-size: 17px;
+    pointer-events: none;
+    transform-origin: left top;
+    transition: transform 200ms var(--ease), color 200ms var(--ease);
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field textarea:focus + label,
+.field textarea:not(:placeholder-shown) + label,
+.field .label-fixed {
+    transform: translateY(-10px) scale(0.72);
+}
+
+.field input[type="date"] {
+    min-height: 56px;
+    color: var(--ink);
+}
+
+.field-error {
+    display: none;
+    margin-top: 6px;
+    padding-left: 22px;
+    color: #e30000;
+    font-size: 13px;
+    position: relative;
+}
+
+.field-error::before {
+    content: "!";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.field.invalid input,
+.field.invalid textarea {
+    border-color: #e30000;
+    background: #fff2f4;
+}
+
+.field.invalid input:focus,
+.field.invalid textarea:focus {
+    box-shadow: 0 0 0 3px rgba(227, 0, 0, 0.2);
+}
+
+.field.invalid .field-error {
+    display: block;
+}
+
+.field-hint {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.order-summary > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-summary small {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.order-actions {
+    display: grid;
+    gap: 12px;
+}
+
+.order-form .btn + .btn {
+    margin-top: 0;
+}
+
+.btn-whatsapp {
+    gap: 10px;
+    background: #25d366;
+    color: #fff;
+}
+
+.btn-whatsapp:hover {
+    background: #20bd5a;
+}
+
+.btn-whatsapp svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.order-actions .btn-whatsapp + .btn-primary {
+    background: transparent;
+    color: var(--link);
+    box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.order-actions .btn-whatsapp + .btn-primary:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.order-sent {
+    margin-top: 18px;
+    padding: 20px 22px;
+    border-radius: 14px;
+    background: #eaf6ec;
+}
+
+.order-sent h3 {
+    font-size: 19px;
+    margin-bottom: 4px;
+}
+
+.order-sent p {
+    color: #2c4a33;
+    font-size: 15px;
+}
+
+.order-sent-actions {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    align-items: center;
+}
+
+.link-button {
+    border: 0;
+    background: none;
+    color: var(--link);
+    cursor: pointer;
+    font-size: 15px;
+    padding: 0;
+}
+
+.link-button:hover {
+    text-decoration: underline;
+}
+
+.option-grid.three {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.swatch-mix {
+    background: linear-gradient(135deg, #1a1a1c 50%, #e3e4e7 50%);
+}
+
+/* Bulk */
+
+.bulk-section {
+    padding-top: 40px;
+}
+
+.bulk-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 56px;
+    align-items: start;
+}
+
+.bulk-info .card {
+    margin-top: 32px;
+}
+
+.uses-left {
+    justify-content: flex-start;
+    margin: 28px 0 0;
+}
+
+.uses-left span {
+    font-size: 14px;
+    padding: 9px 16px;
+}
+
+.bulk-form {
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    background: var(--paper);
+    box-shadow: 0 0 0 1px var(--line), 0 24px 60px rgba(0, 0, 0, 0.06);
+}
+
+.bulk-form h2 {
+    font-size: 32px !important;
+    margin-bottom: 28px;
+}
+
+/* 404 */
+
+.notfound {
+    padding: 140px 0 160px;
+}
+
+.notfound .page-intro {
+    margin: 14px auto 0;
+}
+
+/* ---------- Phone purchase bar ---------- */
+
+.buybar {
+    display: none;
+}
+
+.btn-compact {
+    min-height: 36px;
+    padding: 0 18px;
+    font-size: 15px;
+}
+
+@media (max-width: 833px) {
+    .buybar {
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 40;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(251, 251, 253, 0.86);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+        transform: translateY(110%);
+        transition: transform 400ms var(--ease);
+    }
+
+    .buybar.is-visible {
+        transform: none;
+    }
+
+    .buybar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .buybar-info {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.25;
+    }
+
+    .buybar-info strong {
+        font-size: 15px;
+    }
+
+    .buybar-info span {
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    body.buybar-on .footer {
+        padding-bottom: 72px;
+    }
+
+    .bulk-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bulk-form {
+        padding: 28px 22px;
+    }
+}
+
+@media (max-width: 600px) {
+    .field-row {
+        grid-template-columns: 1fr;
+    }
+
+    .option-grid.three .option {
+        padding: 16px 6px;
+        font-size: 15px;
+    }
 }
 
 /* ---------- Scroll reveal ---------- */
