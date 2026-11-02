@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIST | Portable Fragrance Atomizer</title>
-    <meta name="description" content="MIST is a refillable perfume atomizer with a metal body, visible fill window, and compact everyday-carry design.">
+    <title>MIST — Your fragrance. Pocket-sized.</title>
+    <meta name="description" content="MIST is a refillable perfume atomizer with a glossy metal shell, side fill window and bottom-valve refill. Carry the scent you love, anywhere.">
+    <meta name="theme-color" content="#f5f5f7">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='11' y='2' width='10' height='28' rx='5' fill='%23111'/%3E%3Crect x='11' y='11' width='10' height='1.5' fill='%23ccc'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="style.css">
     <script type="importmap">
         {
@@ -15,48 +17,77 @@
         }
     </script>
 </head>
-
-<body>
-<header class="navbar">
-    <div class="nav-inner">
-        <div class="logo">
-            <a href="index.html" class="brand-logo">MIST</a>
-        </div>
-
-        <nav aria-label="Primary navigation">
-            <a href="index.html">Home</a>
-            <a href="pages/shop.html">Shop</a>
-            <a href="pages/about.html">About</a>
-            <a href="pages/bulk.html">Bulk</a>
-            <a href="pages/faq.html">FAQ</a>
-            <a href="pages/contact.html">Contact</a>
-        </nav>
+<body class="home">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="globalnav">
+    <div class="globalnav-inner">
+        <a href="index.html" class="brand-logo" aria-label="MIST home">MIST</a>
+        <button class="globalnav-menu" type="button" aria-expanded="false" aria-controls="globalnav-links" aria-label="Menu">
+            <span></span><span></span>
+        </button>
+        <ul class="globalnav-links" id="globalnav-links">
+            <li><a href="index.html">MIST</a></li>
+            <li><a href="pages/specs.html">Tech Specs</a></li>
+            <li><a href="pages/shop.html">Shop</a></li>
+            <li><a href="pages/bulk.html">Bulk</a></li>
+            <li><a href="pages/about.html">About</a></li>
+            <li><a href="pages/faq.html">Support</a></li>
+            <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
     </div>
 </header>
+<nav class="localnav" aria-label="MIST product">
+    <div class="localnav-inner">
+        <a href="index.html" class="localnav-title">MIST</a>
+        <div class="localnav-links">
+            <a href="index.html">Overview</a>
+            <a href="pages/specs.html">Tech Specs</a>
+            <a href="pages/shop.html" class="btn btn-small">Buy</a>
+        </div>
+    </div>
+</nav>
 
-<main>
+<main id="main">
     <section class="hero">
         <div class="hero-content reveal">
             <p class="eyebrow">Refillable fragrance atomizer</p>
             <h1>MIST</h1>
-            <p class="hero-tagline">Your scent. Pocket-sized.</p>
-            <p class="hero-copy">A slim refillable perfume atomizer with a spray head, metal shell, and clear fill window for fragrance on the move.</p>
-
+            <p class="hero-tagline">Your fragrance. Pocket&#8209;sized.</p>
             <div class="hero-buttons">
                 <a href="pages/shop.html" class="btn btn-primary">Buy</a>
-                <a href="#details" class="link-more">Learn more</a>
+                <a href="#highlights" class="link-more">Learn more</a>
             </div>
+            <p class="hero-price">₹99<sup><a href="#footnote-1" aria-label="Footnote 1">1</a></sup></p>
         </div>
 
-        <div class="stage reveal" aria-label="3D product visual of the MIST atomizer">
+        <div class="stage reveal" aria-label="Interactive 3D model of the MIST atomizer">
             <div class="product-viewer" id="productViewer">
-                <canvas id="productCanvas" aria-label="Interactive 3D model of the MIST atomizer. Drag to rotate."></canvas>
-                <p class="viewer-fallback">The 3D view needs WebGL. Try another browser to rotate the atomizer.</p>
+                <canvas id="productCanvas" aria-label="3D MIST atomizer. Drag to rotate."></canvas>
+                <div class="viewer-fallback"><svg class="bottle-art fallback-art" viewBox="0 0 60 300" role="img" aria-label="MIST atomizer in black">
+    <defs>
+        <linearGradient id="shell-fb" x1="0" x2="1">
+            <stop offset="0" stop-color="#000000"/><stop offset="0.28" stop-color="#3a3b40"/>
+            <stop offset="0.55" stop-color="#0c0c0e"/><stop offset="1" stop-color="#000000"/>
+        </linearGradient>
+        <linearGradient id="win-fb" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#3b3d42"/><stop offset="0.42" stop-color="#5b5e64"/>
+            <stop offset="0.42" stop-color="#e2b17f"/><stop offset="1" stop-color="#c98c57"/>
+        </linearGradient>
+        <pattern id="knurl-fb" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="4" height="4" fill="none"/><path d="M0 0H4M0 0V4" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+        </pattern>
+    </defs>
+    <rect x="2" y="2" width="56" height="296" rx="24" fill="url(#shell-fb)"/>
+    <rect x="1.5" y="90" width="57" height="4" fill="#e8e8ea"/>
+    <rect x="1.5" y="93" width="57" height="1" fill="#9a9a9e"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#win-fb)"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#knurl-fb)"/>
+    <rect x="10" y="12" width="5" height="270" rx="2.5" fill="rgba(255,255,255,0.28)"/>
+</svg></div>
             </div>
-
             <div class="stage-controls">
                 <div class="finish-picker" role="radiogroup" aria-label="Finish">
-                    <button class="swatch swatch-midnight" type="button" role="radio" aria-checked="true" data-finish="midnight" data-label="Black" aria-label="Black"></button>
+                    <button class="swatch swatch-black" type="button" role="radio" aria-checked="true" data-finish="black" data-label="Black" aria-label="Black"></button>
                     <button class="swatch swatch-silver" type="button" role="radio" aria-checked="false" data-finish="silver" data-label="Silver" aria-label="Silver"></button>
                     <span class="finish-name" id="finishName">Black</span>
                 </div>
@@ -69,98 +100,272 @@
         </div>
     </section>
 
-    <section class="section section-light" id="details">
+    <section class="section" id="highlights">
         <div class="container">
-            <div class="section-heading reveal">
-                <p class="eyebrow">Designed for everyday use</p>
-                <h2>A cleaner way to carry&nbsp;fragrance.</h2>
-                <p>MIST keeps your perfume accessible in a durable, pocket-friendly format that feels intentional rather than disposable.</p>
+            <div class="section-header reveal">
+                <h2>Get the highlights.</h2>
             </div>
-
-            <div class="details-grid">
-                <article class="info-card reveal">
-                    <span class="card-index">Capacity</span>
-                    <h3>Small enough for anywhere.</h3>
-                    <p>Compact chamber for daily carry, short trips, school bags, and event kits.</p>
-                </article>
-
-                <article class="info-card reveal">
-                    <span class="card-index">Material</span>
-                    <h3>Metal, through and through.</h3>
-                    <p>Metal exterior for a solid hand feel and better protection in bags.</p>
-                </article>
-
-                <article class="info-card reveal">
-                    <span class="card-index">Refill</span>
-                    <h3>Fills from the bottom.</h3>
-                    <p>Bottom valve system for quick refills from compatible perfume spray stems.</p>
-                </article>
-
-                <article class="info-card reveal">
-                    <span class="card-index">Use</span>
-                    <h3>Always within reach.</h3>
-                    <p>Slim pocket format keeps the atomizer easy to carry, store, and use throughout the day.</p>
-                </article>
+        </div>
+        <div class="gallery" data-gallery>
+            <ul class="gallery-track">
+                <li class="gallery-card card-dark">
+                    <p class="card-caption"><strong>Slim enough for any pocket.</strong> A slender metal capsule that slips into jeans, blazers, school bags and clutches.</p>
+                    <div class="card-art"><svg class="bottle-art card-bottle" viewBox="0 0 60 300" role="img" aria-label="MIST atomizer in black">
+    <defs>
+        <linearGradient id="shell-g1" x1="0" x2="1">
+            <stop offset="0" stop-color="#000000"/><stop offset="0.28" stop-color="#3a3b40"/>
+            <stop offset="0.55" stop-color="#0c0c0e"/><stop offset="1" stop-color="#000000"/>
+        </linearGradient>
+        <linearGradient id="win-g1" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#3b3d42"/><stop offset="0.42" stop-color="#5b5e64"/>
+            <stop offset="0.42" stop-color="#e2b17f"/><stop offset="1" stop-color="#c98c57"/>
+        </linearGradient>
+        <pattern id="knurl-g1" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="4" height="4" fill="none"/><path d="M0 0H4M0 0V4" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+        </pattern>
+    </defs>
+    <rect x="2" y="2" width="56" height="296" rx="24" fill="url(#shell-g1)"/>
+    <rect x="1.5" y="90" width="57" height="4" fill="#e8e8ea"/>
+    <rect x="1.5" y="93" width="57" height="1" fill="#9a9a9e"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#win-g1)"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#knurl-g1)"/>
+    <rect x="10" y="12" width="5" height="270" rx="2.5" fill="rgba(255,255,255,0.28)"/>
+</svg></div>
+                </li>
+                <li class="gallery-card card-light">
+                    <p class="card-caption"><strong>Fills from the bottom.</strong> Press it onto your perfume's spray stem and pump. No funnel, no decanting.</p>
+                    <div class="card-art card-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="17" y="4" width="14" height="22" rx="6"/><path d="M24 30v6M18 44h12M20 36h8v8h-8z"/></svg></div>
+                </li>
+                <li class="gallery-card card-light">
+                    <p class="card-caption"><strong>See what's left at a glance.</strong> A side window shows the fragrance level inside.</p>
+                    <div class="card-art card-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="16" y="4" width="16" height="40" rx="8"/><rect x="21" y="14" width="6" height="22" rx="2"/><path d="M21 26h6"/></svg></div>
+                </li>
+                <li class="gallery-card card-dark">
+                    <p class="card-caption"><strong>30–35 sprays per fill.</strong><sup>2</sup> Enough for the day, the trip or the night out.</p>
+                    <div class="card-art card-big">30–35</div>
+                </li>
+                <li class="gallery-card card-light">
+                    <p class="card-caption"><strong>Two finishes.</strong> Glossy black or silver, each with a polished silver trim ring.</p>
+                    <div class="card-art card-pair"><svg class="bottle-art" viewBox="0 0 60 300" role="img" aria-label="MIST atomizer in black">
+    <defs>
+        <linearGradient id="shell-g5a" x1="0" x2="1">
+            <stop offset="0" stop-color="#000000"/><stop offset="0.28" stop-color="#3a3b40"/>
+            <stop offset="0.55" stop-color="#0c0c0e"/><stop offset="1" stop-color="#000000"/>
+        </linearGradient>
+        <linearGradient id="win-g5a" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#3b3d42"/><stop offset="0.42" stop-color="#5b5e64"/>
+            <stop offset="0.42" stop-color="#e2b17f"/><stop offset="1" stop-color="#c98c57"/>
+        </linearGradient>
+        <pattern id="knurl-g5a" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="4" height="4" fill="none"/><path d="M0 0H4M0 0V4" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+        </pattern>
+    </defs>
+    <rect x="2" y="2" width="56" height="296" rx="24" fill="url(#shell-g5a)"/>
+    <rect x="1.5" y="90" width="57" height="4" fill="#e8e8ea"/>
+    <rect x="1.5" y="93" width="57" height="1" fill="#9a9a9e"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#win-g5a)"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#knurl-g5a)"/>
+    <rect x="10" y="12" width="5" height="270" rx="2.5" fill="rgba(255,255,255,0.28)"/>
+</svg><svg class="bottle-art" viewBox="0 0 60 300" role="img" aria-label="MIST atomizer in silver">
+    <defs>
+        <linearGradient id="shell-g5b" x1="0" x2="1">
+            <stop offset="0" stop-color="#9c9ea3"/><stop offset="0.28" stop-color="#f4f5f7"/>
+            <stop offset="0.55" stop-color="#d6d7db"/><stop offset="1" stop-color="#8d8f94"/>
+        </linearGradient>
+        <linearGradient id="win-g5b" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#3b3d42"/><stop offset="0.42" stop-color="#5b5e64"/>
+            <stop offset="0.42" stop-color="#e2b17f"/><stop offset="1" stop-color="#c98c57"/>
+        </linearGradient>
+        <pattern id="knurl-g5b" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="4" height="4" fill="none"/><path d="M0 0H4M0 0V4" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+        </pattern>
+    </defs>
+    <rect x="2" y="2" width="56" height="296" rx="24" fill="url(#shell-g5b)"/>
+    <rect x="1.5" y="90" width="57" height="4" fill="#e8e8ea"/>
+    <rect x="1.5" y="93" width="57" height="1" fill="#9a9a9e"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#win-g5b)"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#knurl-g5b)"/>
+    <rect x="10" y="12" width="5" height="270" rx="2.5" fill="rgba(255,255,255,0.28)"/>
+</svg></div>
+                </li>
+            </ul>
+            <div class="gallery-controls">
+                <div class="gallery-dots" role="group" aria-label="Choose highlight">
+                    <button type="button" aria-label="Highlight 1"></button><button type="button" aria-label="Highlight 2"></button><button type="button" aria-label="Highlight 3"></button><button type="button" aria-label="Highlight 4"></button><button type="button" aria-label="Highlight 5"></button>
+                </div>
+                <div class="gallery-arrows">
+                    <button type="button" data-gallery-prev aria-label="Previous">‹</button>
+                    <button type="button" data-gallery-next aria-label="Next">›</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section section-dark">
+    <section class="section section-dark design">
+        <div class="container design-grid">
+            <div class="design-copy reveal">
+                <p class="eyebrow">Design</p>
+                <h2>Glossy metal.<br>Silver accent.<br>Nothing extra.</h2>
+                <p>A seamless capsule with rounded ends, a mirror-finish shell and a single silver ring where the cap meets the body. It feels solid in the hand and protects your fragrance in a crowded bag.</p>
+            </div>
+            <div class="design-art reveal">
+                <svg class="bottle-art design-bottle" viewBox="0 0 60 300" role="img" aria-label="MIST atomizer in black">
+    <defs>
+        <linearGradient id="shell-d1" x1="0" x2="1">
+            <stop offset="0" stop-color="#000000"/><stop offset="0.28" stop-color="#3a3b40"/>
+            <stop offset="0.55" stop-color="#0c0c0e"/><stop offset="1" stop-color="#000000"/>
+        </linearGradient>
+        <linearGradient id="win-d1" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#3b3d42"/><stop offset="0.42" stop-color="#5b5e64"/>
+            <stop offset="0.42" stop-color="#e2b17f"/><stop offset="1" stop-color="#c98c57"/>
+        </linearGradient>
+        <pattern id="knurl-d1" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="4" height="4" fill="none"/><path d="M0 0H4M0 0V4" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+        </pattern>
+    </defs>
+    <rect x="2" y="2" width="56" height="296" rx="24" fill="url(#shell-d1)"/>
+    <rect x="1.5" y="90" width="57" height="4" fill="#e8e8ea"/>
+    <rect x="1.5" y="93" width="57" height="1" fill="#9a9a9e"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#win-d1)"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#knurl-d1)"/>
+    <rect x="10" y="12" width="5" height="270" rx="2.5" fill="rgba(255,255,255,0.28)"/>
+</svg>
+                <svg class="bottle-art design-bottle" viewBox="0 0 60 300" role="img" aria-label="MIST atomizer in silver">
+    <defs>
+        <linearGradient id="shell-d2" x1="0" x2="1">
+            <stop offset="0" stop-color="#9c9ea3"/><stop offset="0.28" stop-color="#f4f5f7"/>
+            <stop offset="0.55" stop-color="#d6d7db"/><stop offset="1" stop-color="#8d8f94"/>
+        </linearGradient>
+        <linearGradient id="win-d2" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#3b3d42"/><stop offset="0.42" stop-color="#5b5e64"/>
+            <stop offset="0.42" stop-color="#e2b17f"/><stop offset="1" stop-color="#c98c57"/>
+        </linearGradient>
+        <pattern id="knurl-d2" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="4" height="4" fill="none"/><path d="M0 0H4M0 0V4" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+        </pattern>
+    </defs>
+    <rect x="2" y="2" width="56" height="296" rx="24" fill="url(#shell-d2)"/>
+    <rect x="1.5" y="90" width="57" height="4" fill="#e8e8ea"/>
+    <rect x="1.5" y="93" width="57" height="1" fill="#9a9a9e"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#win-d2)"/>
+    <rect x="22" y="112" width="16" height="150" rx="3" fill="url(#knurl-d2)"/>
+    <rect x="10" y="12" width="5" height="270" rx="2.5" fill="rgba(255,255,255,0.28)"/>
+</svg>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-gray" id="refill">
         <div class="container">
-            <div class="section-heading centered reveal">
+            <div class="section-header centered reveal">
                 <p class="eyebrow">How it works</p>
-                <h2>Refill in three simple&nbsp;steps.</h2>
+                <h2>Refill in seconds.</h2>
                 <p>MIST is made for people who already have a fragrance they love and want a smaller way to carry it.</p>
             </div>
-
-            <div class="steps">
-                <article class="reveal">
-                    <span>1</span>
+            <ol class="steps">
+                <li class="reveal">
+                    <span class="step-num">1</span>
                     <h3>Remove the perfume cap</h3>
                     <p>Take off the spray head from your perfume bottle to expose the refill stem.</p>
-                </article>
-                <article class="reveal">
-                    <span>2</span>
+                </li>
+                <li class="reveal">
+                    <span class="step-num">2</span>
                     <h3>Press MIST onto the stem</h3>
-                    <p>Align the bottom valve and press down steadily until the chamber fills.</p>
-                </article>
-                <article class="reveal">
-                    <span>3</span>
+                    <p>Align the bottom valve and pump down steadily. Watch the window until the chamber fills.</p>
+                </li>
+                <li class="reveal">
+                    <span class="step-num">3</span>
                     <h3>Carry it with confidence</h3>
-                    <p>Keep it in your pocket, school bag, gym kit, handbag, or travel pouch.</p>
-                </article>
-            </div>
+                    <p>Snap the cap on and keep it in your pocket, school bag, gym kit, handbag or travel pouch.</p>
+                </li>
+            </ol>
         </div>
     </section>
 
     <section class="section">
         <div class="container">
-            <div class="section-heading centered reveal">
-                <p class="eyebrow">Tech specs</p>
-                <h2>Compact, practical, and gift&#8209;ready.</h2>
+            <div class="section-header centered reveal">
+                <h2>Goes wherever you&nbsp;go.</h2>
             </div>
-
-            <div class="spec-table reveal">
-                <div><span>Format</span><strong>Mini refillable atomizer</strong></div>
-                <div><span>Body</span><strong>Metal-look exterior with fill window</strong></div>
-                <div><span>Refill type</span><strong>Bottom valve</strong></div>
-                <div><span>Finish options</span><strong>Black and silver style</strong></div>
-                <div><span>Best for</span><strong>Daily carry, travel, gifting, resale</strong></div>
+            <div class="uses reveal">
+                <span>Pocket</span><span>School bag</span><span>Gym kit</span><span>Handbag</span><span>Travel pouch</span><span>Events</span><span>Gifting</span><span>Resale</span>
             </div>
+            <div class="stats">
+                <div class="reveal"><strong>₹99</strong><span>per atomizer</span></div>
+                <div class="reveal"><strong>30–35</strong><span>sprays per fill<sup>2</sup></span></div>
+                <div class="reveal"><strong>40+</strong><span>units for bulk orders</span></div>
+                <div class="reveal"><strong>5–7</strong><span>working days delivery</span></div>
+            </div>
+        </div>
+    </section>
 
-            <div class="cta reveal">
-                <a href="pages/shop.html" class="btn btn-primary">Buy MIST</a>
+    <section class="section section-gray founders-teaser">
+        <div class="container centered reveal">
+            <p class="eyebrow">The team</p>
+            <h2>Made by three founders.</h2>
+            <ul class="founder-names">
+                <li>Vivaan Agarwal</li><li>Pura Ruia</li><li>Bhavya Bansal</li>
+            </ul>
+            <a href="pages/about.html#founders" class="link-more">Meet the team</a>
+        </div>
+    </section>
+
+    <section class="section cta-section">
+        <div class="container centered reveal">
+            <h2>Carry the scent you&nbsp;love.</h2>
+            <p class="cta-price">MIST is ₹99.<sup>1</sup></p>
+            <div class="hero-buttons">
+                <a href="pages/shop.html" class="btn btn-primary">Buy</a>
                 <a href="pages/bulk.html" class="link-more">Bulk orders</a>
             </div>
         </div>
     </section>
 </main>
-
 <footer class="footer">
-    <p>&copy; 2026 MIST. All rights reserved.</p>
-    <div>
-        <a href="pages/shipping.html">Shipping & Returns</a>
-        <a href="pages/privacy.html">Privacy Policy</a>
+    <div class="footer-inner">
+        <div class="footnotes">
+            <p id="footnote-1">1. Price per atomizer. Delivery usually takes 5–7 working days after order confirmation.</p>
+            <p>2. Approximately 30–35 sprays, depending on the fragrance and spray pressure.</p>
+            <p>Fragrance not included. MIST works with most standard removable spray-stem perfume bottles; it may not work with sealed or unusual bottle designs.</p></div>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="index.html" class="brand-logo small">MIST</a><span aria-hidden="true">›</span><span>Overview</span>
+        </nav>
+        <div class="directory">
+            <div>
+                <h3>Shop and Learn</h3>
+                <a href="index.html">MIST</a>
+                <a href="pages/specs.html">Tech Specs</a>
+                <a href="pages/shop.html">Buy MIST</a>
+                <a href="pages/bulk.html">Bulk Orders</a>
+            </div>
+            <div>
+                <h3>Support</h3>
+                <a href="pages/faq.html">FAQ</a>
+                <a href="pages/faq.html#refill">How to Refill</a>
+                <a href="pages/shipping.html">Shipping &amp; Returns</a>
+                <a href="pages/contact.html">Contact Us</a>
+            </div>
+            <div>
+                <h3>About MIST</h3>
+                <a href="pages/about.html">Our Story</a>
+                <a href="pages/about.html#founders">Founders</a>
+                <a href="pages/privacy.html">Privacy Policy</a>
+            </div>
+            <div>
+                <h3>Connect</h3>
+                <a href="https://instagram.com/mist.atom" target="_blank" rel="noopener">Instagram</a>
+                <a href="mailto:mist2k26@gmail.com">Email</a>
+            </div>
+        </div>
+        <p class="footer-shop">More ways to shop: <a href="pages/contact.html">contact us</a> or message <a href="https://instagram.com/mist.atom" target="_blank" rel="noopener">@mist.atom</a> on Instagram.</p>
+        <div class="footer-legal">
+            <p>Copyright &copy; 2026 MIST. All rights reserved.</p>
+            <p class="credits">Co-founded by Vivaan Agarwal, Pura Ruia and Bhavya Bansal. Website designed and built by Vivaan Agarwal.</p>
+            <div class="legal-links">
+                <a href="pages/privacy.html">Privacy Policy</a>
+                <a href="pages/shipping.html">Shipping &amp; Returns</a>
+            </div>
+        </div>
     </div>
 </footer>
 
