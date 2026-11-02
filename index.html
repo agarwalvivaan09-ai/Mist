@@ -6,6 +6,14 @@
     <title>MIST | Portable Fragrance Atomizer</title>
     <meta name="description" content="MIST is a refillable perfume atomizer with a metal body, visible fill window, and compact everyday-carry design.">
     <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -28,84 +36,96 @@
 
 <main>
     <section class="hero">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <p class="eyebrow">Refillable fragrance atomizer</p>
-                <h1>MIST</h1>
-                <p class="hero-copy">A slim refillable perfume atomizer with a spray head, metal shell, and clear fill window for fragrance on the move.</p>
+        <div class="hero-content reveal">
+            <p class="eyebrow">Refillable fragrance atomizer</p>
+            <h1>MIST</h1>
+            <p class="hero-tagline">Your scent. Pocket-sized.</p>
+            <p class="hero-copy">A slim refillable perfume atomizer with a spray head, metal shell, and clear fill window for fragrance on the move.</p>
 
-                <div class="hero-buttons">
-                    <a href="pages/shop.html" class="btn btn-primary">Shop MIST</a>
-                    <a href="#details" class="btn btn-secondary">View details</a>
-                </div>
+            <div class="hero-buttons">
+                <a href="pages/shop.html" class="btn btn-primary">Buy</a>
+                <a href="#details" class="link-more">Learn more</a>
+            </div>
+        </div>
+
+        <div class="stage reveal" aria-label="3D product visual of the MIST atomizer">
+            <div class="product-viewer" id="productViewer">
+                <canvas id="productCanvas" aria-label="Interactive 3D model of the MIST atomizer. Drag to rotate."></canvas>
+                <p class="viewer-fallback">The 3D view needs WebGL. Try another browser to rotate the atomizer.</p>
             </div>
 
-            <div class="product-panel product-3d" aria-label="3D product visual of the MIST atomizer">
-                <div class="product-viewer" id="productViewer">
-                    <canvas id="productCanvas" aria-label="Interactive 3D model of the MIST atomizer"></canvas>
+            <div class="stage-controls">
+                <div class="finish-picker" role="radiogroup" aria-label="Finish">
+                    <button class="swatch swatch-midnight" type="button" role="radio" aria-checked="true" data-finish="midnight" data-label="Black" aria-label="Black"></button>
+                    <button class="swatch swatch-silver" type="button" role="radio" aria-checked="false" data-finish="silver" data-label="Silver" aria-label="Silver"></button>
+                    <span class="finish-name" id="finishName">Black</span>
                 </div>
-                <div class="product-note">
-                    <span>Spray nozzle</span>
-                    <span>Fill window</span>
-                    <span>Bottom valve</span>
+                <div class="stage-actions">
+                    <button class="pill" type="button" id="capToggle" aria-pressed="false">Remove cap</button>
+                    <button class="pill" type="button" id="sprayButton" disabled>Spray</button>
                 </div>
             </div>
+            <p class="stage-hint">Drag to rotate</p>
         </div>
     </section>
 
     <section class="section section-light" id="details">
         <div class="container">
-            <div class="section-heading">
+            <div class="section-heading reveal">
                 <p class="eyebrow">Designed for everyday use</p>
-                <h2>A cleaner way to carry fragrance.</h2>
+                <h2>A cleaner way to carry&nbsp;fragrance.</h2>
                 <p>MIST keeps your perfume accessible in a durable, pocket-friendly format that feels intentional rather than disposable.</p>
             </div>
 
             <div class="details-grid">
-                <article class="info-card soft-lift">
-                    <h3>Capacity</h3>
+                <article class="info-card reveal">
+                    <span class="card-index">Capacity</span>
+                    <h3>Small enough for anywhere.</h3>
                     <p>Compact chamber for daily carry, short trips, school bags, and event kits.</p>
                 </article>
 
-                <article class="info-card soft-lift">
-                    <h3>Material</h3>
+                <article class="info-card reveal">
+                    <span class="card-index">Material</span>
+                    <h3>Metal, through and through.</h3>
                     <p>Metal exterior for a solid hand feel and better protection in bags.</p>
                 </article>
 
-                <article class="info-card soft-lift">
-                    <h3>Refill</h3>
+                <article class="info-card reveal">
+                    <span class="card-index">Refill</span>
+                    <h3>Fills from the bottom.</h3>
                     <p>Bottom valve system for quick refills from compatible perfume spray stems.</p>
                 </article>
 
-                <article class="info-card soft-lift">
-                    <h3>Use</h3>
+                <article class="info-card reveal">
+                    <span class="card-index">Use</span>
+                    <h3>Always within reach.</h3>
                     <p>Slim pocket format keeps the atomizer easy to carry, store, and use throughout the day.</p>
                 </article>
             </div>
         </div>
     </section>
 
-    <section class="section">
-        <div class="container split">
-            <div>
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-heading centered reveal">
                 <p class="eyebrow">How it works</p>
-                <h2>Refill in three simple steps.</h2>
-                <p class="section-copy">MIST is made for people who already have a fragrance they love and want a smaller way to carry it.</p>
+                <h2>Refill in three simple&nbsp;steps.</h2>
+                <p>MIST is made for people who already have a fragrance they love and want a smaller way to carry it.</p>
             </div>
 
             <div class="steps">
-                <article>
-                    <span>01</span>
+                <article class="reveal">
+                    <span>1</span>
                     <h3>Remove the perfume cap</h3>
                     <p>Take off the spray head from your perfume bottle to expose the refill stem.</p>
                 </article>
-                <article>
-                    <span>02</span>
+                <article class="reveal">
+                    <span>2</span>
                     <h3>Press MIST onto the stem</h3>
                     <p>Align the bottom valve and press down steadily until the chamber fills.</p>
                 </article>
-                <article>
-                    <span>03</span>
+                <article class="reveal">
+                    <span>3</span>
                     <h3>Carry it with confidence</h3>
                     <p>Keep it in your pocket, school bag, gym kit, handbag, or travel pouch.</p>
                 </article>
@@ -113,26 +133,31 @@
         </div>
     </section>
 
-    <section class="section section-light">
-        <div class="container split">
-            <div>
-                <p class="eyebrow">Product specs</p>
-                <h2>Compact, practical, and gift-ready.</h2>
+    <section class="section">
+        <div class="container">
+            <div class="section-heading centered reveal">
+                <p class="eyebrow">Tech specs</p>
+                <h2>Compact, practical, and gift&#8209;ready.</h2>
             </div>
 
-            <div class="spec-table">
+            <div class="spec-table reveal">
                 <div><span>Format</span><strong>Mini refillable atomizer</strong></div>
                 <div><span>Body</span><strong>Metal-look exterior with fill window</strong></div>
                 <div><span>Refill type</span><strong>Bottom valve</strong></div>
                 <div><span>Finish options</span><strong>Black and silver style</strong></div>
                 <div><span>Best for</span><strong>Daily carry, travel, gifting, resale</strong></div>
             </div>
+
+            <div class="cta reveal">
+                <a href="pages/shop.html" class="btn btn-primary">Buy MIST</a>
+                <a href="pages/bulk.html" class="link-more">Bulk orders</a>
+            </div>
         </div>
     </section>
 </main>
 
 <footer class="footer">
-    <p>&copy; 2026 MIST</p>
+    <p>&copy; 2026 MIST. All rights reserved.</p>
     <div>
         <a href="pages/shipping.html">Shipping & Returns</a>
         <a href="pages/privacy.html">Privacy Policy</a>
