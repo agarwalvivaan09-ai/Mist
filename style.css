@@ -11,24 +11,37 @@
 }
 
 :root {
-    --ink: #1d1d1f;
-    --muted: #6e6e73;
-    --soft-muted: #86868b;
-    --line: #d2d2d7;
-    --paper: #ffffff;
-    --gray: #f5f5f7;
-    --dark: #000000;
-    --dark-card: #1d1d1f;
-    --dark-muted: #a1a1a6;
-    --accent: #0071e3;
-    --accent-hover: #0077ed;
-    --link: #0066cc;
-    --link-dark: #2997ff;
-    --brand: #b01963;
+    /* MIST palette */
+    --teal: #013230;
+    --teal-deep: #01211f;
+    --teal-raised: #063f3c;
+    --cream: #F3EBDD;
+    --cream-deep: #E9DECB;
+    --cream-light: #FAF5EC;
+    --orange: #FF6A1F;
+    --orange-hot: #FF8A4A;
+    --orange-deep: #D9500E;
+
+    /* Roles (light sections are cream, dark sections are teal) */
+    --ink: #013230;
+    --muted: rgba(1, 50, 48, 0.68);
+    --soft-muted: rgba(1, 50, 48, 0.48);
+    --line: rgba(1, 50, 48, 0.14);
+    --paper: var(--cream);
+    --gray: var(--cream-deep);
+    --dark: var(--teal);
+    --dark-card: var(--teal-raised);
+    --dark-muted: rgba(243, 235, 221, 0.66);
+    --accent: var(--orange);
+    --accent-hover: var(--orange-hot);
+    --link: var(--orange-deep);
+    --link-dark: var(--orange);
+    --brand: var(--orange-deep);
     --radius: 18px;
-    --radius-lg: 28px;
+    --radius-lg: 26px;
     --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
-    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font: "Archivo", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-display: "Anton", "Bebas Neue", Impact, "Arial Narrow", sans-serif;
     --nav-h: 44px;
     --localnav-h: 52px;
 }
@@ -1840,6 +1853,904 @@ h3 {
     .option-grid.three .option {
         padding: 16px 6px;
         font-size: 15px;
+    }
+}
+
+/* ==========================================================================
+   MIST theme — deep teal, cream, orange
+   Teal and cream carry the page; orange is reserved for what the eye
+   should land on: the product band, the buy actions and key numbers.
+   ========================================================================== */
+
+:root {
+    --ribs: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 6px);
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    --band: linear-gradient(180deg, rgba(255, 214, 180, 0.55) 0, rgba(255, 214, 180, 0) 3px),
+        linear-gradient(180deg, transparent 0, rgba(120, 30, 0, 0.28) 100%),
+        linear-gradient(90deg, #c2470b 0%, #FF6A1F 34%, #FF8A4A 50%, #FF6A1F 66%, #c2470b 100%);
+}
+
+body {
+    background: var(--teal);
+    color: var(--ink);
+    letter-spacing: -0.012em;
+}
+
+::selection {
+    background: var(--orange);
+    color: var(--teal-deep);
+}
+
+:focus-visible {
+    outline-color: var(--orange);
+}
+
+/* Dark surfaces flip the text tokens to cream */
+.hero,
+.section-dark,
+.cta-section,
+.card-dark,
+.globalnav,
+.localnav,
+.page-hero,
+.founder,
+.footer,
+.buybar {
+    --ink: var(--cream);
+    --muted: rgba(243, 235, 221, 0.7);
+    --soft-muted: rgba(243, 235, 221, 0.48);
+    --line: rgba(243, 235, 221, 0.14);
+    --link: var(--orange);
+    color: var(--ink);
+}
+
+/* ---------- Display type ---------- */
+
+.hero h1,
+.section h2,
+.page-hero h1,
+.buy-panel h1,
+.stats strong,
+.spec-big,
+.card-big {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+}
+
+.section-header h2,
+.section h2,
+.page-hero h1 {
+    font-size: clamp(46px, 7vw, 92px);
+    line-height: 0.94;
+}
+
+.cta-section h2 {
+    font-size: clamp(56px, 9vw, 120px);
+}
+
+.card h2,
+.contact-card h2,
+.legal h2,
+.order-sent h3 {
+    font-family: var(--font);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+}
+
+.bulk-form h2 {
+    font-size: 40px !important;
+}
+
+h3,
+.steps h3,
+.tile h3,
+.founder h3,
+.help-grid h3,
+.accordion summary,
+.spec-row dt,
+.order-form legend {
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
+
+.accent {
+    color: var(--orange);
+}
+
+/* Eyebrow: small tracked caps with an orange lead-in rule */
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--orange);
+}
+
+.section-dark .eyebrow {
+    color: var(--cream);
+}
+
+.section-header p:not(.eyebrow),
+.page-intro {
+    color: var(--muted);
+}
+
+.muted {
+    color: var(--muted);
+}
+
+/* ---------- Navigation ---------- */
+
+.globalnav {
+    background: rgba(1, 33, 31, 0.96);
+    border-bottom: 1px solid rgba(243, 235, 221, 0.06);
+}
+
+.brand-logo {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: 0.1em;
+}
+
+.brand-logo.small {
+    font-size: 15px;
+}
+
+.globalnav .brand-logo {
+    color: var(--cream);
+}
+
+.globalnav-links a {
+    color: rgba(243, 235, 221, 0.7);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.globalnav-links a:hover,
+.globalnav-links a.active {
+    color: var(--cream);
+}
+
+.globalnav-links a.active {
+    box-shadow: inset 0 -2px 0 var(--orange);
+}
+
+.globalnav-menu span {
+    background: var(--cream);
+}
+
+.localnav {
+    background: rgba(1, 50, 48, 0.82);
+    border-bottom: 1px solid rgba(243, 235, 221, 0.1);
+}
+
+.localnav-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 0.06em;
+}
+
+.localnav-links a:not(.btn) {
+    color: var(--cream);
+    opacity: 0.8;
+}
+
+/* ---------- Buttons & links ---------- */
+
+.btn {
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.btn-primary,
+.btn-small {
+    background: var(--orange);
+    color: var(--teal-deep);
+    box-shadow: 0 12px 32px -10px rgba(255, 106, 31, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn-primary:hover,
+.btn-small:hover {
+    background: var(--orange-hot);
+}
+
+.btn-small {
+    box-shadow: none;
+}
+
+.btn-secondary {
+    color: var(--ink);
+    box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+
+.btn-secondary:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.link-more {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.link-more::after {
+    color: var(--orange);
+}
+
+.section-dark .link-more {
+    color: var(--cream);
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+    background: var(--paper);
+}
+
+.section-gray {
+    background: var(--gray);
+}
+
+.section-dark {
+    background: var(--ribs), var(--teal);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+    position: relative;
+    isolation: isolate;
+    padding-bottom: 72px;
+    background:
+        radial-gradient(ellipse 55% 45% at 50% 62%, rgba(10, 84, 79, 0.85), transparent 70%),
+        var(--ribs),
+        var(--teal);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--grain);
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.hero h1 {
+    font-size: clamp(110px, 14vw, 196px);
+    line-height: 0.86;
+    letter-spacing: 0.03em;
+    padding-left: 0.03em;
+    margin: 0 0 18px;
+}
+
+.hero-tagline {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.hero-price {
+    color: var(--muted);
+}
+
+/* The orange band: one confident stroke behind the product */
+.stage {
+    isolation: isolate;
+}
+
+.stage::before,
+.stage::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 56%;
+    width: 220vw;
+    height: clamp(120px, 15vw, 190px);
+    transform: translate(-50%, -50%) rotate(-11deg);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.stage::before {
+    background: var(--band);
+    -webkit-mask-image: linear-gradient(90deg, transparent 18%, #000 38%, #000 62%, transparent 82%);
+    mask-image: linear-gradient(90deg, transparent 18%, #000 38%, #000 62%, transparent 82%);
+}
+
+/* Soft glow the band throws onto the teal */
+.stage::after {
+    background: radial-gradient(ellipse 30% 100% at 50% 50%, rgba(255, 106, 31, 0.45), transparent 70%);
+    filter: blur(40px);
+    height: clamp(220px, 26vw, 340px);
+    z-index: -2;
+}
+
+/* Contact shadow where the product meets the band */
+.product-viewer::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 7%;
+    width: 180px;
+    height: 26px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(40, 10, 0, 0.55), transparent 70%);
+    filter: blur(6px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.stage-controls {
+    position: relative;
+    margin-top: 18px;
+}
+
+.swatch {
+    box-shadow: inset 0 0 0 1px rgba(243, 235, 221, 0.25);
+}
+
+.swatch[aria-checked="true"],
+.hero .swatch[aria-checked="true"] {
+    box-shadow: inset 0 0 0 1px rgba(243, 235, 221, 0.25), 0 0 0 2px var(--teal), 0 0 0 4px var(--orange);
+}
+
+.finish-name {
+    color: var(--muted);
+}
+
+.pill {
+    background: rgba(243, 235, 221, 0.1);
+    color: var(--cream);
+    box-shadow: inset 0 0 0 1px rgba(243, 235, 221, 0.14);
+    backdrop-filter: blur(10px);
+}
+
+.pill:hover:not(:disabled) {
+    background: rgba(243, 235, 221, 0.18);
+}
+
+.stage-hint {
+    color: var(--soft-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+/* ---------- Highlights gallery ---------- */
+
+.card-dark {
+    background:
+        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(255, 106, 31, 0.16), transparent 70%),
+        var(--ribs),
+        var(--teal);
+}
+
+.card-light {
+    background: var(--cream-light);
+    box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.card-caption,
+.card-dark .card-caption {
+    color: var(--soft-muted);
+    font-weight: 500;
+}
+
+.card-caption strong,
+.card-dark .card-caption strong {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.card-icon svg {
+    stroke: var(--teal);
+    stroke-width: 1.2;
+}
+
+.card-big {
+    font-size: 150px;
+    letter-spacing: 0;
+    background: linear-gradient(170deg, var(--orange-hot), var(--orange) 45%, var(--orange-deep));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.gallery-dots {
+    background: rgba(1, 50, 48, 0.07);
+}
+
+.gallery-dots button {
+    background: rgba(1, 50, 48, 0.3);
+}
+
+.gallery-dots button[aria-current="true"] {
+    background: var(--orange);
+}
+
+.gallery-arrows button {
+    background: rgba(1, 50, 48, 0.08);
+    color: var(--teal);
+}
+
+.gallery-arrows button:hover:not(:disabled) {
+    background: rgba(1, 50, 48, 0.14);
+}
+
+/* ---------- Design ---------- */
+
+.design-copy h2 {
+    font-size: clamp(48px, 5.6vw, 76px);
+}
+
+.design-copy p:not(.eyebrow) {
+    color: var(--dark-muted);
+}
+
+.design-art {
+    position: relative;
+    isolation: isolate;
+}
+
+.design-art::before {
+    content: "";
+    position: absolute;
+    inset: 15% 0;
+    z-index: -1;
+    background: radial-gradient(ellipse 50% 50% at 50% 55%, rgba(243, 235, 221, 0.12), transparent 70%);
+}
+
+/* ---------- Steps ---------- */
+
+.steps li {
+    position: relative;
+    background: var(--cream-light);
+    box-shadow: inset 0 0 0 1px var(--line);
+    overflow: hidden;
+}
+
+.step-num {
+    display: block;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: none;
+    color: var(--orange);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 18px;
+}
+
+.step-num::before {
+    content: "0";
+}
+
+/* ---------- Uses, stats, founders ---------- */
+
+.uses span {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px rgba(1, 50, 48, 0.22);
+    font-weight: 500;
+}
+
+.section-gray .uses span {
+    background: transparent;
+}
+
+.stats strong {
+    font-size: clamp(56px, 7vw, 88px);
+    line-height: 1;
+    color: var(--teal);
+}
+
+.stats > div:first-child strong {
+    color: var(--orange-deep);
+}
+
+.stats span {
+    letter-spacing: 0.04em;
+}
+
+.founder-names li:not(:last-child)::after {
+    color: var(--orange);
+}
+
+.founder {
+    background: var(--ribs), var(--teal);
+}
+
+.avatar {
+    font-family: var(--font-display);
+    font-weight: 400;
+    background: linear-gradient(145deg, #0a5450, var(--teal-deep));
+    color: var(--cream);
+    box-shadow: inset 0 0 0 1px rgba(243, 235, 221, 0.2);
+}
+
+.founder:nth-child(2) .avatar {
+    background: linear-gradient(145deg, var(--orange-hot), var(--orange-deep));
+    color: var(--teal-deep);
+}
+
+.founder:nth-child(3) .avatar {
+    background: linear-gradient(145deg, var(--cream-light), var(--cream-deep));
+    color: var(--teal);
+}
+
+/* ---------- Closing CTA: the band returns ---------- */
+
+.cta-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-bottom: 240px;
+    background:
+        radial-gradient(ellipse 60% 50% at 50% 100%, rgba(10, 84, 79, 0.9), transparent 70%),
+        var(--ribs),
+        var(--teal);
+}
+
+.cta-section::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    width: 220vw;
+    height: 120px;
+    transform: translateX(-50%) rotate(-6deg);
+    background: var(--band);
+    -webkit-mask-image: linear-gradient(90deg, transparent 22%, #000 40%, #000 60%, transparent 78%);
+    mask-image: linear-gradient(90deg, transparent 22%, #000 40%, #000 60%, transparent 78%);
+    z-index: -1;
+}
+
+.cta-section::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 900px;
+    height: 260px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse 50% 50% at 50% 60%, rgba(255, 106, 31, 0.35), transparent 70%);
+    filter: blur(40px);
+    z-index: -2;
+}
+
+.cta-price {
+    color: var(--muted);
+}
+
+/* ---------- Inner pages ---------- */
+
+.page-hero {
+    position: relative;
+    padding: 104px 0 80px;
+    background:
+        radial-gradient(ellipse 60% 70% at 85% 100%, rgba(255, 106, 31, 0.14), transparent 70%),
+        var(--ribs),
+        var(--teal);
+}
+
+.page-hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--orange) 50%, transparent);
+    opacity: 0.85;
+}
+
+.page-hero h1 {
+    max-width: 14ch;
+    font-size: clamp(56px, 8vw, 108px);
+    line-height: 0.92;
+}
+
+.page-hero.centered h1,
+.centered .page-hero h1 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-hero + .section {
+    padding-top: 88px;
+}
+
+.tile {
+    background: var(--cream-light);
+    box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.section:not(.section-gray) .tile {
+    background: var(--cream-deep);
+    box-shadow: none;
+}
+
+.tile-icon svg {
+    stroke: var(--orange-deep);
+    stroke-width: 1.8;
+}
+
+.card {
+    background: var(--cream-light);
+    box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.section-gray .card {
+    background: var(--cream);
+}
+
+.check-list li::before {
+    background-color: var(--teal);
+}
+
+.spec-big,
+.spec-row dd .spec-big {
+    color: var(--teal);
+    font-size: 56px;
+    line-height: 1;
+}
+
+.spec-row {
+    border-top-color: var(--line);
+}
+
+/* Shop */
+
+.buy {
+    background: var(--paper);
+}
+
+.buy-stage {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse 60% 45% at 50% 55%, rgba(10, 84, 79, 0.9), transparent 70%),
+        var(--ribs),
+        var(--teal);
+}
+
+.buy-stage::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    width: 200%;
+    height: 130px;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    background: var(--band);
+    -webkit-mask-image: linear-gradient(90deg, transparent 15%, #000 38%, #000 62%, transparent 85%);
+    mask-image: linear-gradient(90deg, transparent 15%, #000 38%, #000 62%, transparent 85%);
+    z-index: -1;
+}
+
+.buy-bottle {
+    filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.45));
+}
+
+.buy-panel h1 {
+    font-size: clamp(52px, 6vw, 76px);
+    line-height: 0.95;
+}
+
+.buy-price {
+    color: var(--orange-deep);
+    font-weight: 700;
+}
+
+.option,
+.qty {
+    background: var(--cream-light);
+    box-shadow: inset 0 0 0 1px rgba(1, 50, 48, 0.22);
+}
+
+.option:has(input:checked) {
+    box-shadow: inset 0 0 0 2px var(--orange);
+}
+
+.qty button:hover {
+    background: var(--cream-deep);
+}
+
+.order-summary strong,
+.order-summary > :last-child {
+    color: var(--teal);
+}
+
+.btn-whatsapp {
+    background: var(--orange);
+    color: var(--teal-deep);
+    box-shadow: 0 12px 32px -10px rgba(255, 106, 31, 0.75);
+}
+
+.btn-whatsapp:hover {
+    background: var(--orange-hot);
+}
+
+.order-actions .btn-whatsapp + .btn-primary {
+    background: transparent;
+    color: var(--teal);
+    box-shadow: inset 0 0 0 1.5px var(--teal);
+}
+
+.order-actions .btn-whatsapp + .btn-primary:hover {
+    background: var(--teal);
+    color: var(--cream);
+}
+
+.order-sent {
+    background: rgba(1, 50, 48, 0.07);
+    box-shadow: inset 3px 0 0 var(--orange);
+}
+
+.order-sent p {
+    color: var(--muted);
+}
+
+.link-button {
+    color: var(--orange-deep);
+    font-weight: 600;
+}
+
+/* Forms */
+
+.field input,
+.field textarea {
+    background: var(--cream-light);
+    border-color: rgba(1, 50, 48, 0.24);
+    color: var(--teal);
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(255, 106, 31, 0.22);
+}
+
+.field label {
+    color: var(--soft-muted);
+}
+
+.field.invalid input,
+.field.invalid textarea {
+    border-color: #c62828;
+    background: #fbefe6;
+}
+
+.field-error {
+    color: #c62828;
+}
+
+.bulk-form {
+    background: var(--cream-light);
+    box-shadow: 0 0 0 1px var(--line), 0 30px 70px -20px rgba(1, 50, 48, 0.25);
+}
+
+/* FAQ */
+
+.accordion summary::after {
+    color: var(--orange);
+    font-weight: 400;
+}
+
+/* Contact */
+
+.contact-card {
+    background: var(--cream-light);
+    box-shadow: inset 0 0 0 1px var(--line);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+    background: var(--teal-deep);
+    border-top: 2px solid var(--orange);
+}
+
+.footer a {
+    color: rgba(243, 235, 221, 0.78);
+}
+
+.footer a:hover {
+    color: var(--cream);
+}
+
+.footer-shop a {
+    color: var(--orange);
+}
+
+.directory h3 {
+    color: var(--cream);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.breadcrumbs .brand-logo {
+    color: var(--cream);
+}
+
+/* ---------- Phone purchase bar & menu ---------- */
+
+.buybar .btn-primary {
+    box-shadow: none;
+}
+
+@media (max-width: 833px) {
+    .buybar {
+        background: rgba(1, 33, 31, 0.92);
+        border-top: 1px solid rgba(243, 235, 221, 0.12);
+    }
+
+    .globalnav-links {
+        background: rgba(1, 33, 31, 0.98);
+    }
+
+    .globalnav-links a {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: 30px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--cream);
+    }
+
+    .globalnav-links a.active {
+        box-shadow: none;
+        color: var(--orange);
+    }
+
+    .cta-section {
+        padding-bottom: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: clamp(108px, 34vw, 160px);
+    }
+
+    .stage::before {
+        top: 58%;
+    }
+
+    .card-big {
+        font-size: 120px;
+    }
+
+    .page-hero {
+        padding: 72px 0 56px;
+    }
+
+    .eyebrow {
+        letter-spacing: 0.22em;
     }
 }
 
