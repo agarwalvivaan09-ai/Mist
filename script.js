@@ -504,9 +504,9 @@ async function initProductViewer(mount) {
     /* ----- Contact shadows ----- */
     const shadowTex = new THREE.CanvasTexture(makeCanvas(256, (ctx) => {
         const g = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
-        g.addColorStop(0, "rgba(0,0,0,0.6)");
-        g.addColorStop(0.3, "rgba(0,0,0,0.25)");
-        g.addColorStop(1, "rgba(0,0,0,0)");
+        g.addColorStop(0, "rgba(1,50,48,0.75)");
+        g.addColorStop(0.3, "rgba(1,50,48,0.3)");
+        g.addColorStop(1, "rgba(1,50,48,0)");
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, 256, 256);
     }));
@@ -525,8 +525,8 @@ async function initProductViewer(mount) {
     /* ----- Mist particles ----- */
     const dotTex = new THREE.CanvasTexture(makeCanvas(64, (ctx) => {
         const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-        g.addColorStop(0, "rgba(255,255,255,1)");
-        g.addColorStop(1, "rgba(255,255,255,0)");
+        g.addColorStop(0, "rgba(243,235,221,1)");
+        g.addColorStop(1, "rgba(243,235,221,0)");
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, 64, 64);
     }));
@@ -538,7 +538,7 @@ async function initProductViewer(mount) {
     const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({
         size: 0.2,
         map: dotTex,
-        color: 0x9aa6b8,
+        color: 0xf3ebdd,
         transparent: true,
         opacity: 0.45,
         depthWrite: false
