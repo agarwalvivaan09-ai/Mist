@@ -42,8 +42,8 @@
     --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
     --font: "Archivo", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-display: "Anton", "Bebas Neue", Impact, "Arial Narrow", sans-serif;
-    --nav-h: 44px;
-    --localnav-h: 52px;
+    --nav-h: 56px;
+    --localnav-h: var(--nav-h);
 }
 
 html {
@@ -135,7 +135,8 @@ sup a {
 /* ---------- Global nav ---------- */
 
 .globalnav {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 30;
     background: rgba(1, 50, 48, 0.92);
     backdrop-filter: saturate(180%) blur(20px);
@@ -143,7 +144,7 @@ sup a {
 }
 
 .globalnav-inner {
-    width: min(1024px, calc(100% - 44px));
+    width: min(980px, calc(100% - 44px));
     height: var(--nav-h);
     margin: 0 auto;
     display: flex;
@@ -174,6 +175,8 @@ sup a {
     display: flex;
     align-items: center;
     gap: 6px;
+    margin-left: auto;
+    margin-right: 18px;
 }
 
 .globalnav-links a {
@@ -226,55 +229,6 @@ sup a {
 
 .nav-open .globalnav-menu span:last-child {
     transform: translateY(-3.5px) rotate(-45deg);
-}
-
-/* ---------- Local (product) nav ---------- */
-
-.localnav {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: rgba(243, 235, 221, 0.8);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid rgba(1, 50, 48, 0.16);
-}
-
-.localnav-inner {
-    width: min(980px, calc(100% - 44px));
-    height: var(--localnav-h);
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.localnav-title {
-    color: var(--ink);
-    font-size: 21px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-}
-
-.localnav-title:hover {
-    text-decoration: none;
-}
-
-.localnav-links {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-}
-
-.localnav-links a:not(.btn) {
-    color: var(--ink);
-    font-size: 12px;
-    opacity: 0.88;
-}
-
-.localnav-links a.active {
-    opacity: 0.5;
-    pointer-events: none;
 }
 
 /* ---------- Buttons & links ---------- */
@@ -1891,7 +1845,6 @@ body {
 .cta-section,
 .card-dark,
 .globalnav,
-.localnav,
 .page-hero,
 .founder,
 .footer,
@@ -2035,23 +1988,6 @@ h3,
 
 .globalnav-menu span {
     background: var(--cream);
-}
-
-.localnav {
-    background: rgba(1, 50, 48, 0.82);
-    border-bottom: 1px solid rgba(243, 235, 221, 0.1);
-}
-
-.localnav-title {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 24px;
-    letter-spacing: 0.06em;
-}
-
-.localnav-links a:not(.btn) {
-    color: var(--cream);
-    opacity: 0.8;
 }
 
 /* ---------- Buttons & links ---------- */
@@ -2813,7 +2749,7 @@ h3,
         grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
         align-items: center;
         gap: 0 24px;
-        width: min(1240px, calc(100% - 88px));
+        width: min(980px, calc(100% - 44px));
         margin: 0 auto;
         padding: 72px 0 56px;
         text-align: left;
@@ -2844,7 +2780,7 @@ h3,
     }
 
     .hero h1 {
-        font-size: clamp(150px, 15.5vw, 228px);
+        font-size: clamp(150px, 15vw, 204px);
         margin-left: -0.04em;
     }
 
@@ -3131,6 +3067,27 @@ h3,
     color: var(--muted);
 }
 
+/* ---------- Single navigation bar ---------- */
+
+.globalnav-links a {
+    font-size: 14px;
+}
+
+@media (max-width: 833px) {
+    .globalnav-links {
+        margin: 0;
+    }
+
+    .nav-open .globalnav-links {
+        background: var(--teal);
+        box-shadow: 0 1px 0 rgba(243, 235, 221, 0.1);
+    }
+}
+
+.nav-buy:hover {
+    text-decoration: none;
+}
+
 /* ---------- Upgrade: responsive ---------- */
 
 @media (max-width: 999px) {
@@ -3278,6 +3235,11 @@ h3,
         display: block;
     }
 
+    .nav-buy {
+        margin-left: auto;
+        margin-right: 4px;
+    }
+
     .globalnav-links {
         position: absolute;
         top: var(--nav-h);
@@ -3351,7 +3313,6 @@ h3,
     .container.narrow,
     .stage,
     .hero-content,
-    .localnav-inner,
     .globalnav-inner,
     .footer-inner,
     .gallery-controls {
@@ -3376,9 +3337,6 @@ h3,
         height: 260px;
     }
 
-    .localnav-links {
-        gap: 14px;
-    }
 
     .hero {
         padding-top: 44px;
